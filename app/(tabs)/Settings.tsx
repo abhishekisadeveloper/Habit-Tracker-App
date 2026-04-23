@@ -16,6 +16,7 @@ import { Typography } from "@/src/theme/typography";
 import { useAuth } from "@/src/context/AuthContext";
 import { logoutUser } from "@/src/services/auth.service";
 import { router } from "expo-router";
+import { colors } from "@/src/theme";
 
 interface SettingItemProps {
   icon: keyof typeof Ionicons.glyphMap;
@@ -48,8 +49,18 @@ const SettingItem = ({ icon, label, value, onPress, rightElement, isLast }: Sett
       </View>
 
       <View style={styles.itemRight}>
-        {value && <Text style={[styles.itemValue, { color: theme.colors.textSecondary }]}>{value}</Text>}
-        {rightElement || <Ionicons name="chevron-forward" size={18} color={theme.colors.placeholder} />}
+        {value && (
+          <Text 
+            style={[styles.itemValue, { color: theme.colors.textSecondary }]} 
+            numberOfLines={2} 
+            ellipsizeMode="tail"
+          >
+            {value}
+          </Text>
+        )}
+        <View style={styles.arrowContainer}>
+          {rightElement || <Ionicons name="chevron-forward" size={18} color={theme.colors.placeholder} />}
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -121,14 +132,18 @@ const Settings = () => {
         </View>
 
         <TouchableOpacity 
-          style={[styles.logoutButton, isLoggingOut && { opacity: 0.7 }]} 
+          style={[
+            styles.logoutButton, 
+            { backgroundColor: colors.dangerBackground },
+            isLoggingOut && { opacity: 0.7 }
+          ]} 
           onPress={handleLogout}
           disabled={isLoggingOut}
         >
           {isLoggingOut ? (
-            <ActivityIndicator color="#ff5c5c" />
+            <ActivityIndicator color={colors.danger} />
           ) : (
-            <Text style={styles.logoutText}>Logout</Text>
+            <Text style={[styles.logoutText, { color: colors.danger }]}>Logout</Text>
           )}
         </TouchableOpacity>
 
@@ -177,11 +192,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.md,
+    minHeight: 60,
   },
   itemLeft: {
     flexDirection: "row",
     alignItems: "center",
     gap: spacing.md,
+    maxWidth: "40%",
   },
   iconBox: {
     width: 36,
@@ -197,15 +214,24 @@ const styles = StyleSheet.create({
   itemRight: {
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing.sm,
+    flex: 1,
+    justifyContent: "flex-end",
+    marginLeft: spacing.md,
   },
   itemValue: {
     fontSize: Typography.fontSize.sm,
     fontFamily: Typography.fontFamily.regular,
+    textAlign: "right",
+    flex: 1,
+    marginRight: spacing.xs,
+  },
+  arrowContainer: {
+    width: 20,
+    alignItems: "flex-end",
   },
   logoutButton: {
     marginTop: spacing.xxxl,
-    backgroundColor: "#ff5c5c20",
+    backgroundColor: colors.dangerBackground,
     padding: spacing.md,
     borderRadius: spacing.md,
     alignItems: "center",
@@ -213,7 +239,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   logoutText: {
-    color: "#ff5c5c",
+    color: colors.danger,
     fontFamily: Typography.fontFamily.bold,
     fontSize: Typography.fontSize.md,
   },
@@ -224,3 +250,4 @@ const styles = StyleSheet.create({
     fontFamily: Typography.fontFamily.regular,
   },
 });
+

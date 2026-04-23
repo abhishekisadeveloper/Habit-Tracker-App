@@ -37,9 +37,9 @@ export const Button = ({
       disabled={disabled || loading}
     >
       {loading ? (
-        <ActivityIndicator color="#ffffff" style={styles.loader} />
+        <ActivityIndicator color={theme.colors.buttonText} style={styles.loader} />
       ) : (
-        children || <Text style={[styles.buttonText, textStyle]}>{label}</Text>
+        children || <Text style={[styles.buttonText, { color: theme.colors.buttonText }, textStyle]}>{label}</Text>
       )}
     </TouchableOpacity>
   );
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonText: {
-    color: "#ffffff",
     fontSize: Typography.fontSize.md,
     textAlign: "center",
     fontFamily: Typography.fontFamily.medium,

@@ -10,10 +10,16 @@ export const colors = {
     placeholder: "#b7b7b8",
     inputBorder: "#ccc",
     dot: "#ff0000",
+    buttonText: "#ffffff",
+    headerBackground: "#ffffff",
+    headerText: "#1a1919",
+    danger: "#ff5c5c",
+    dangerBackground: "#ff5c5c20",
   },
   dark: {
     primary: "#3842fe",
     background: "#121212",
+    backgroundSecondary: "#1a1a1a",
     surface: "#1f1f1f",
     border: "#444444",
     textPrimary: "#ffffff",
@@ -21,6 +27,11 @@ export const colors = {
     placeholder: "#b7b7b8",
     inputBorder: "#444444",
     dot: "#ff0000",
+    buttonText: "#ffffff",
+    headerBackground: "#121212",
+    headerText: "#ffffff",
+    danger: "#ff5c5c",
+    dangerBackground: "#ff5c5c30",
   },
 };
 

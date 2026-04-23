@@ -26,7 +26,7 @@ export function ThemeProvider({ children, initialDark = false }: ThemeProviderPr
   const value: ThemeContextType = {
     isDark,
     colors: isDark ? colors.dark : colors.light,
-    Typography,
+    typography: Typography,
     spacing,
     toggleTheme: () => setIsDark((prev) => !prev),
   };
