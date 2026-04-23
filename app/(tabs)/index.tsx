@@ -31,6 +31,7 @@ const Home = () => {
         renderItem={({ item }) => <HabitCard habit={item} />}
         showsVerticalScrollIndicator={false}
       />
+      
     </View>
   )
 }
